@@ -1,0 +1,29 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.22.4
+
+      - name: ENV
+        env:
+          SURREALDB_URL: ${{ secrets.SURREALDB_URL }}
+          SURREALDB_NAMESPACE: ${{ secrets.SURREALDB_NAMESPACE }}
+          SURREALDB_DATABASE: ${{ secrets.SURREALDB_DATABASE }}
+
+      - name: Run
+        run: go test ./...
