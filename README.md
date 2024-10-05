@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-	dbConfig := Surreal{
+	dbConfig := go_surrealdb.Surreal{
 		URL:       "http://localhost:8000",
 		Version:   ">= 2.x",
 		Namespace: "<your namespace>",
@@ -46,7 +46,7 @@ func main() {
 		},
 	}
 
-	db := SurrealDB(dbConfig)
+	db := go_surrealdb.SurrealDB(dbConfig)
 
 	// Now you can use the db object to perform operations.
 }
@@ -77,7 +77,7 @@ fmt.Println("Query Results:", results)
 To sign in and obtain an authentication token, use the `Signin` method:
 
 ```go
-signinVars := SigninVars{
+signinVars := go_surrealdb.SigninVars{
 	NS:   &db.Namespace,
 	DB:   &db.Database,
 	User: ptrString("<your username>"),
@@ -99,7 +99,7 @@ fmt.Println("Authentication Token:", token)
 For signing up new users, use the `Signup` method:
 
 ```go
-signupVars := SignupVars{
+signupVars := go_surrealdb.SignupVars{
 	NS:   &db.Namespace,
 	DB:   &db.Database,
 	User: ptrString("<new username>"),
@@ -121,7 +121,7 @@ fmt.Println("Authentication Token:", token)
 You can update or remove the authentication method at any time:
 
 ```go
-newAuth := &AuthConfig{
+newAuth := &go_surrealdb.AuthConfig{
 	Method: "Token",
 	Token:  "your_token",
 }
