@@ -5,12 +5,6 @@ import (
 	"testing"
 )
 
-func init() {
-	if os.Getenv("GITHUB_ACTIONS") == "" {
-		panic("Error loading environment variables")
-	}
-}
-
 func TestSurrealDBConnection(t *testing.T) {
 	dbURL := os.Getenv("SURREALDB_URL")
 	dbNamespace := os.Getenv("SURREALDB_NAMESPACE")
